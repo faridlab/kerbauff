@@ -14,6 +14,7 @@ import Colors from '../constants/Colors';
 import useColorScheme from '../hooks/useColorScheme';
 import ModalScreen from '../screens/ModalScreen';
 import NotFoundScreen from '../screens/NotFoundScreen';
+import SplashScreen from '../screens/SplashScreen';
 import TabHomeScreen from '../screens/TabHomeScreen';
 import TabNotificationsScreen from '../screens/TabNotificationsScreen';
 import TabSettingScreen from '../screens/TabSettingScreen';
@@ -39,7 +40,8 @@ const Stack = createNativeStackNavigator<RootStackParamList>();
 
 function RootNavigator() {
   return (
-    <Stack.Navigator>
+    <Stack.Navigator initialRouteName="Splash">
+      <Stack.Screen name="Splash" component={SplashScreen} options={{ headerShown: false }} />
       <Stack.Screen name="Root" component={BottomTabNavigator} options={{ headerShown: false }} />
       <Stack.Screen name="NotFound" component={NotFoundScreen} options={{ title: 'Oops!' }} />
       <Stack.Group screenOptions={{ presentation: 'modal' }}>
