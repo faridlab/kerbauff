@@ -1,9 +1,22 @@
 import { StyleSheet } from 'react-native';
 
-import EditScreenInfo from '../components/EditScreenInfo';
 import { Text, View } from '../components/Themed';
+import useUserAuthenticated from '../hooks/useUserAuthenticated';
+import { useNavigation, StackActions } from '@react-navigation/native';
+import { useEffect } from 'react';
 
 export default function SplashScreen({ }) {
+  const navigation = useNavigation();
+  const { isLoggedIn } = useUserAuthenticated()
+
+  useEffect(() => {
+    if(isLoggedIn) {
+      console.log('SUCCESS LOGED IN');
+    } else {
+      navigation.dispatch(StackActions.replace('Login'));
+    }
+  }, [isLoggedIn]);
+
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Splash</Text>
